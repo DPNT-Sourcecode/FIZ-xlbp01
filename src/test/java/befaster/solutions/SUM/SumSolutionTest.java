@@ -1,22 +1,59 @@
 package befaster.solutions.SUM;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.hamcrest.Matcher;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+@RunWith(Parameterized.class)
 public class SumSolutionTest {
-    private SumSolution sum;
 
-    @Before
-    public void setUp() {
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
-        sum = new SumSolution();
-    }
+	private SumSolution testSubject;
 
-    @Test
-    public void compute_sum() {
-        assertThat(sum.compute(1, 1), equalTo(2));
-    }
+	private int firstParameter;
+	private int secondParameter;
+	private int expectedValue;
+	private Matcher<Throwable> epxectedError;
+	private Matcher<String> expectedErrorMessage;
+
+	@Parameters(name = "{index}: sum {0} + {1}")
+	public static Collection<Object[]> data() {
+		return Arrays.asList(new Object[][] { { 10, 11, 12 } });
+	}
+
+	public SumSolutionTest(final int firstParameter, final int secondParameter, final int expected) {
+		this.firstParameter = firstParameter;
+		this.secondParameter = secondParameter;
+		this.expectedValue = expected;
+	}
+
+	public SumSolutionTest(final int firstParameter, final int secondParameter, final Matcher<Throwable> epxectedError,
+			Matcher<String> expectedErrorMessage) {
+		this.firstParameter = firstParameter;
+		this.secondParameter = secondParameter;
+	}
+
+	@Before
+	public void setUp() {
+		testSubject = new SumSolution();
+	}
+
+	@Test
+	public void compute_sum() {
+		assertThat(testSubject.compute(this.firstParameter, this.secondParameter), equalTo(this.expectedValue));
+	}
+
 }
