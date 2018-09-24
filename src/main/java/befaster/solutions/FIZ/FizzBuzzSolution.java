@@ -15,10 +15,18 @@ public class FizzBuzzSolution {
     		joiner.add("buzz");
     	}
     	
+    	if(number > 10 && hasAllIdentical(numberToString)) {
+    		joiner.add("deluxe");
+    	}
+    	
     	if(joiner.length() == 0) {
     		joiner.add(String.valueOf(number));
     	}
     	return joiner.toString();
+    }
+    
+    private boolean hasAllIdentical(String value) {
+    	return value.chars().allMatch(c -> c == value.charAt(0));
     }
 
 }
