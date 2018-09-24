@@ -16,6 +16,10 @@ public class FizzBuzzSolution {
     	}
     	
     	if(number > 10 && hasAllIdentical(numberToString)) {
+    		
+    		if(number % 2 != 0) {
+    			joiner.add("fake");
+    		}
     		joiner.add("deluxe");
     	}
     	
