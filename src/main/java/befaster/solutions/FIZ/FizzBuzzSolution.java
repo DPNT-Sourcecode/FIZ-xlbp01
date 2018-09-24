@@ -7,15 +7,18 @@ public class FizzBuzzSolution {
     public String fizzBuzz(Integer number) {
         StringJoiner joiner = new StringJoiner(" ");
         String numberToString = String.valueOf(number);
+        boolean isDeluxe = false;
     	if(number % 3 == 0 || numberToString.contains("3")) {
     		joiner.add("fizz");
+    		isDeluxe = number % 3 == 0 && numberToString.contains("3");
     	}
     	
     	if(number % 5 == 0 || numberToString.contains("5")) {
     		joiner.add("buzz");
+    		isDeluxe = number % 5 == 0 && numberToString.contains("5");
     	}
     	
-    	if(number > 10 && hasAllIdentical(numberToString)) {
+    	if(isDeluxe) {
     		
     		if(number % 2 != 0) {
     			joiner.add("fake");
@@ -27,10 +30,6 @@ public class FizzBuzzSolution {
     		joiner.add(String.valueOf(number));
     	}
     	return joiner.toString();
-    }
-    
-    private boolean hasAllIdentical(String value) {
-    	return value.chars().allMatch(c -> c == value.charAt(0));
     }
 
 }
