@@ -15,7 +15,7 @@ public class FizzBuzzSolution {
     	
     	if(number % 5 == 0 || numberToString.contains("5")) {
     		joiner.add("buzz");
-    		isDeluxe = number % 5 == 0 && numberToString.contains("5");
+    		isDeluxe = isDeluxe || (number % 5 == 0 && numberToString.contains("5"));
     	}
     	
     	if(isDeluxe) {

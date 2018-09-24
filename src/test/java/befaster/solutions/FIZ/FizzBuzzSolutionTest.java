@@ -24,17 +24,15 @@ public class FizzBuzzSolutionTest {
 	@Parameters(name = "{index}: {0} should return {1}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] { //
-				{ 3, "fizz" }, //
+				{ 3, "fizz fake deluxe" }, //
 				{ 10, "buzz" }, //
-				{ 15, "fizz buzz" }, //
+				{ 15, "fizz buzz fake deluxe" }, //
 				{ 17, "17" }, //
 				{ 13, "fizz" }, //
 				{ 151, "buzz" }, //
 				{ 157, "buzz" }, //
 				{ 577, "buzz" }, //
-				{ 555, "fizz buzz deluxe" }, //
-				{ 5555, "buzz deluxe" }, //
-				{ 777, "fizz deluxe" }, //
+				{ 30, "fizz buzz deluxe" }, //
 		});
 	}
 
