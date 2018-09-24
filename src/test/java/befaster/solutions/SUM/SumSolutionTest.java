@@ -6,7 +6,6 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,8 +14,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import befaster.runner.BadParametersException;
+
 @RunWith(Parameterized.class)
 public class SumSolutionTest {
+
+	private static final String BAD_PARAMETER_MESSAGE = "The parameter %d is invalid";
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
@@ -26,21 +29,24 @@ public class SumSolutionTest {
 	private int firstParameter;
 	private int secondParameter;
 	private int expectedValue;
-	private Matcher<Throwable> expectedError;
-	private Matcher<String> expectedErrorMessage;
+	private Class<Throwable> expectedExceptionClass;
+	private String expectedErrorMessage;
 
-	@Parameters(name = "{index}: sum {0} + {1}")
+	@Parameters(name = "{index}: {0}")
 	public static Collection<Object[]> data() {
-		return Arrays.asList(new Object[][] { { 10, 11, 21, null, null } //
+		return Arrays.asList(new Object[][] { //
+				{ "Compute sum should return the correct value", 10, 11, 21, null, null }, //
+				{ "The method throws a BadParametersException with the correct error message", -1, 11, -1,
+						BadParametersException.class, "Parameters must be between 0 and 100." } //
 		});
 	}
 
 	public SumSolutionTest(final int firstParameter, final int secondParameter, final int expected,
-			final Matcher<Throwable> epxectedError, Matcher<String> expectedErrorMessage) {
+			final Class<Throwable> expectedExceptionClass, String expectedErrorMessage) {
 		this.firstParameter = firstParameter;
 		this.secondParameter = secondParameter;
 		this.expectedValue = expected;
-		this.expectedError = epxectedError;
+		this.expectedExceptionClass = expectedExceptionClass;
 		this.expectedErrorMessage = expectedErrorMessage;
 	}
 
@@ -51,7 +57,12 @@ public class SumSolutionTest {
 
 	@Test
 	public void compute_sum() {
-		assertThat(testSubject.compute(this.firstParameter, this.secondParameter), equalTo(this.expectedValue));
+		if (expectedExceptionClass != null) {
+			assertThat(testSubject.compute(this.firstParameter, this.secondParameter), equalTo(this.expectedValue));
+		} else {
+			thrown.expect(expectedExceptionClass);
+			thrown.expectMessage(expectedErrorMessage);
+		}
 	}
 
 }
