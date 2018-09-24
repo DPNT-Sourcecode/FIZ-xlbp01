@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class HelloSolution {
 	
-	static final String MESSAGE_TEMPLATE = "Hello %s";
+	static final String MESSAGE_TEMPLATE = "Hello, World!";
 	
     public String hello(String friendName) {
     	
