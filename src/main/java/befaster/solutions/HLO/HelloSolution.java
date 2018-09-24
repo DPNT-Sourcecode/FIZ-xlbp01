@@ -1,12 +1,15 @@
 package befaster.solutions.HLO;
 
-import befaster.runner.SolutionNotImplementedException;
+import java.util.Objects;
 
 public class HelloSolution {
 	
 	static final String MESSAGE_TEMPLATE = "Hello %s";
 	
     public String hello(String friendName) {
-    	throw new SolutionNotImplementedException();
+    	
+    	Objects.requireNonNull(friendName, "The name cannot be null");
+    	
+    	return String.format(MESSAGE_TEMPLATE, friendName);
     }
 }
