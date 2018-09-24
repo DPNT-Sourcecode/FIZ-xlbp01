@@ -26,24 +26,22 @@ public class SumSolutionTest {
 	private int firstParameter;
 	private int secondParameter;
 	private int expectedValue;
-	private Matcher<Throwable> epxectedError;
+	private Matcher<Throwable> expectedError;
 	private Matcher<String> expectedErrorMessage;
 
 	@Parameters(name = "{index}: sum {0} + {1}")
 	public static Collection<Object[]> data() {
-		return Arrays.asList(new Object[][] { { 10, 11, 12 } });
+		return Arrays.asList(new Object[][] { { 10, 11, 21, null, null } //
+		});
 	}
 
-	public SumSolutionTest(final int firstParameter, final int secondParameter, final int expected) {
+	public SumSolutionTest(final int firstParameter, final int secondParameter, final int expected,
+			final Matcher<Throwable> epxectedError, Matcher<String> expectedErrorMessage) {
 		this.firstParameter = firstParameter;
 		this.secondParameter = secondParameter;
 		this.expectedValue = expected;
-	}
-
-	public SumSolutionTest(final int firstParameter, final int secondParameter, final Matcher<Throwable> epxectedError,
-			Matcher<String> expectedErrorMessage) {
-		this.firstParameter = firstParameter;
-		this.secondParameter = secondParameter;
+		this.expectedError = epxectedError;
+		this.expectedErrorMessage = expectedErrorMessage;
 	}
 
 	@Before
