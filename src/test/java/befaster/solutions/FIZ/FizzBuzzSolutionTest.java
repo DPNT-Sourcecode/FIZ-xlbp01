@@ -8,15 +8,18 @@ import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class FizzBuzzSolutionTest {
 	
 
 	private FizzBuzzSolution testSubject;
 
 	private int parameter;
-	private int expectedValue;
+	private String expectedValue;
 
 	@Parameters(name = "{index}: {0} should return {1}")
 	public static Collection<Object[]> data() {
@@ -28,7 +31,7 @@ public class FizzBuzzSolutionTest {
 		});
 	}
 
-	public FizzBuzzSolutionTest(final int parameter, final int expectedValue) {
+	public FizzBuzzSolutionTest(final int parameter, final String expectedValue) {
 		this.parameter = parameter;
 		this.expectedValue = expectedValue;
 	}
