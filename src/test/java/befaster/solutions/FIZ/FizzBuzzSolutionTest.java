@@ -21,7 +21,10 @@ public class FizzBuzzSolutionTest {
 	@Parameters(name = "{index}: {0} should return {1}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] { //
-				{ 10, 11 }, //
+				{ 3, "fizz" }, //
+				{ 10, "buzz" }, //
+				{ 15, "fizz buzz" }, //
+				{ 17, "17" }, //
 		});
 	}
 
