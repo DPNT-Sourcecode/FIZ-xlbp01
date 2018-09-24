@@ -28,6 +28,7 @@ public class FizzBuzzSolutionTest {
 				{ 10, "buzz" }, //
 				{ 15, "fizz buzz" }, //
 				{ 17, "17" }, //
+				{ 13, "fizz" }, //
 		});
 	}
 

@@ -6,7 +6,8 @@ public class FizzBuzzSolution {
 
     public String fizzBuzz(Integer number) {
         StringJoiner joiner = new StringJoiner(" ");
-    	if(number % 3 == 0) {
+        String numberToString = String.valueOf(number);
+    	if(number % 3 == 0 || numberToString.endsWith("3")) {
     		joiner.add("fizz");
     	}
     	
