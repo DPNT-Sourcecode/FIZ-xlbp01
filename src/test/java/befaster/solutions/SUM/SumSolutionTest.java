@@ -19,7 +19,7 @@ import befaster.runner.BadParametersException;
 @RunWith(Parameterized.class)
 public class SumSolutionTest {
 
-	private static final String BAD_PARAMETER_MESSAGE = "The parameter %d is invalid";
+	private static final String BAD_PARAMETER_MESSAGE = "Parameters must be between 0 and 100.";
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
@@ -37,11 +37,11 @@ public class SumSolutionTest {
 		return Arrays.asList(new Object[][] { //
 				{ "Compute sum should return the correct value", 10, 11, 21, null, null }, //
 				{ "The method throws a BadParametersException with the correct error message", -1, 11, -1,
-						BadParametersException.class, "Parameters must be between 0 and 100." } //
+						BadParametersException.class, BAD_PARAMETER_MESSAGE } //
 		});
 	}
 
-	public SumSolutionTest(final int firstParameter, final int secondParameter, final int expected,
+	public SumSolutionTest(final String title, final int firstParameter, final int secondParameter, final int expected,
 			final Class<Throwable> expectedExceptionClass, String expectedErrorMessage) {
 		this.firstParameter = firstParameter;
 		this.secondParameter = secondParameter;
