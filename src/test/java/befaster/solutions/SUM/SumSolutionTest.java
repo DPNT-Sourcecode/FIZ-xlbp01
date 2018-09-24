@@ -57,7 +57,7 @@ public class SumSolutionTest {
 
 	@Test
 	public void compute_sum() {
-		if (expectedExceptionClass != null) {
+		if (expectedExceptionClass == null) {
 			assertThat(testSubject.compute(this.firstParameter, this.secondParameter), equalTo(this.expectedValue));
 		} else {
 			thrown.expect(expectedExceptionClass);
